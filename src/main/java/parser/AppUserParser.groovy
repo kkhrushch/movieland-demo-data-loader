@@ -1,7 +1,6 @@
 package parser
 
 import model.AppUser
-import model.Genre
 
 import java.util.stream.Collectors
 
@@ -12,7 +11,7 @@ class AppUserParser {
         List<String> appUserStrings = file.text.split('\r\n\r\n\r\n\r\n')
 
         return appUserStrings.stream()
-        .map{u ->
+                .map { u ->
             List<String> userData = u.split('\r\n\r\n')
             List<String> userName = userData.get(0).split(' ')
 

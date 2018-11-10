@@ -2,12 +2,12 @@ package model
 
 class Movie {
     String name;
-    String original_name;
+    String originalName;
     int year;
     String country;
-    List<String> genres;
-    long movie_genre_id;
+    List<Genre> genres;
     String description;
+    double rating;
     double price;
     String poster_url;
 }

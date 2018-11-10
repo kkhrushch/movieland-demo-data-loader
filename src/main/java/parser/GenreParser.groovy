@@ -9,8 +9,8 @@ class GenreParser {
         File file = new File(getClass().getResource(path).toURI())
 
         return file.text.readLines().stream()
-        .filter{l -> !l.isEmpty()}
-        .map{l -> new Genre(l)}
-        .collect(Collectors.toList());
+                .filter { l -> !l.isEmpty() }
+                .map { l -> new Genre(l) }
+                .collect(Collectors.toList());
     }
 }
