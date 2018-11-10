@@ -9,7 +9,7 @@ import org.springframework.jdbc.support.KeyHolder
 import java.sql.PreparedStatement
 
 class MovieDao {
-    private JdbcTemplate jdbcTemplate = Config.jdbcTemplate
+    private static final JdbcTemplate jdbcTemplate = Config.jdbcTemplate
 
     private static final String TRUNCATE_MOVIE_SQL = "TRUNCATE TABLE movie"
     private static final String TRUNCATE_MOVIE_GENRE_SQL = "TRUNCATE TABLE movie_genre"
@@ -48,7 +48,7 @@ class MovieDao {
         def movieId = keyHolder.getKey().longValue()
 
         movie.genres.forEach { g ->
-            def genreId = (long) jdbcTemplate.queryForObject(SELECT_GENRE_ID_SQL, [g.name] as String[], long.class)
+            def genreId = jdbcTemplate.queryForObject(SELECT_GENRE_ID_SQL, [g.name] as String[], long.class)
             jdbcTemplate.update(INSERT_MOVIE_GENRE_SQL, movieId, genreId)
         }
     }
